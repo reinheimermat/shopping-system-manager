@@ -2,24 +2,26 @@ public class Loja {
     private String nome;
     private int quantidadeFuncionarios;
     private double salarioBaseFuncionario;
-    private Data dataFundacao;
+    
+    // Etapa 02
     private Endereco endereco;
+    private Data dataFundacao;
 
     // Métodos Construtores
-    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Data dataFundacao, Endereco endereco) {
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
-        this.dataFundacao = dataFundacao;
         this.endereco = endereco;
+        this.dataFundacao = dataFundacao;
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Data dataFundacao, Endereco endereco) {
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = -1;
-        this.dataFundacao = dataFundacao;
         this.endereco = endereco;
+        this.dataFundacao = dataFundacao;
     }
 
     // Getters e Setters
@@ -47,6 +49,7 @@ public class Loja {
         this.salarioBaseFuncionario = salarioBaseFuncionario;
     }
 
+    // Etapa 02
     public Data getDataFundacao() {
         return dataFundacao;
     }
@@ -69,6 +72,8 @@ public class Loja {
                 "nome =" + nome + '\'' +
                 ", quantidadeFuncionarios =" + quantidadeFuncionarios +
                 ", salarioBaseFuncionario =" + salarioBaseFuncionario +
+                ", Data de Fundação =" + dataFundacao + // etapa 02
+                ", Endereço =" + endereco + // etapa 02
                 '}';
     }
 
