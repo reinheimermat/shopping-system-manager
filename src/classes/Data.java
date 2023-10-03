@@ -1,7 +1,8 @@
+package classes;
 public class Data {
-    private int dia;
-    private int mes;
-    private int ano;
+    int dia;
+    int mes;
+    int ano;
 
     // Construtor
     public Data(int dia, int mes, int ano) {

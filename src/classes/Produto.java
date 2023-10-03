@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+package classes;
 
 public class Produto {
     private String nome;
@@ -12,27 +12,15 @@ public class Produto {
         this.dataValidade = dataValidade;
     }
 
-    // Etapa 02
-    public Boolean estaVencido(Data dataValidade) {
-        LocalDateTime dataAtual = LocalDateTime.now();
-
-        boolean anoMaior = dataValidade.getAno() > dataAtual.getYear();
-        if (anoMaior) {
+    public boolean estaVencido(Data data) {
+        if (data.ano > this.dataValidade.ano) {
             return true;
-        }
-
-        boolean mesmoAno = dataValidade.getAno() == dataAtual.getYear();
-        boolean mesmoAnoMesMaior = mesmoAno && dataValidade.getMes() > dataAtual.getMonth().getValue();
-        if (mesmoAnoMesMaior) {
+        } else if (data.ano == this.dataValidade.ano && data.mes >= this.dataValidade.mes
+                && data.dia >= this.dataValidade.dia) {
             return true;
+        } else {
+            return false;
         }
-
-        boolean mesmoMes = dataValidade.getMes() == dataAtual.getMonth().getValue();
-        return mesmoMes && dataValidade.getDia() > dataAtual.getDayOfMonth();
-    }
-
-    public boolean isVencido() {
-        return this.estaVencido(getDataValidade());
     }
 
     // Getters e Setters
@@ -64,11 +52,10 @@ public class Produto {
     // toString
     public String toString() {
         return "Produto {" +
-               ", nome =" + nome +
-               ", preço =" + preco +
-               ", data de validade =" + dataValidade + // etapa 02
-               "}";
+                ", nome =" + nome +
+                ", preço =" + preco +
+                ", data de validade =" + dataValidade + // etapa 02
+                "}";
     }
-
 
 }
