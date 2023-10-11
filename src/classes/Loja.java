@@ -1,5 +1,7 @@
 package classes;
 
+import static java.util.Objects.isNull;
+
 public class Loja {
     private String nome;
     private int quantidadeFuncionarios;
@@ -9,22 +11,27 @@ public class Loja {
     private Endereco endereco;
     private Data dataFundacao;
 
+    // Etapa 04
+    private Produto[] estoqueProdutos;
+
     // Métodos Construtores
     public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco,
-            Data dataFundacao) {
+            Data dataFundacao, int quantidadeMaximaProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaximaProdutos];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao) {
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int quantidadeMaximaProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = -1;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaximaProdutos];
     }
 
     // Getters e Setters
@@ -69,6 +76,14 @@ public class Loja {
         this.endereco = endereco;
     }
 
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
     // Método toString
     public String toString() {
         return "Loja {" +
@@ -77,6 +92,7 @@ public class Loja {
                 ", salarioBaseFuncionario =" + salarioBaseFuncionario +
                 ", Data de Fundação =" + dataFundacao + // etapa 02
                 ", Endereço =" + endereco + // etapa 02
+                ", Estoque de Produtos =" + this.estoqueProdutos +
                 '}';
     }
 
@@ -96,5 +112,34 @@ public class Loja {
         } else {
             return 'G';
         }
+    }
+
+    // Etapa 04
+    public void imprimeProduto() {
+        for(int i = 0; i < this.estoqueProdutos.length; i++) {
+            System.out.println("\nProduto =" + i + "\n" + this.estoqueProdutos[i]);
+        }
+    }
+
+    public boolean insereProduto(Produto produto) {
+
+        for (int i = 0; i < this.estoqueProdutos.length; i++) {
+            if (isNull(this.estoqueProdutos[i])) {
+                this.estoqueProdutos[i] = produto;
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public boolean removeProduto(String nomeParaRemover) {
+        for (int i = 0; i < this.estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i].getNome().equals(nomeParaRemover)) {
+                estoqueProdutos[i].removeProduto();
+                return true;
+            }
+        }
+        return false;
     }
 }

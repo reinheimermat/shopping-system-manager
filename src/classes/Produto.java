@@ -58,4 +58,10 @@ public class Produto {
                 "}";
     }
 
+    public void removeProduto() {
+        this.setNome(null);
+        this.setDataValidade(null);
+        this.setPreco(0);
+    }
+
 }
